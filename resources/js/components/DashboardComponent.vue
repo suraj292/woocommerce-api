@@ -37,15 +37,24 @@
                     <code>{{ api.getToken() ? 'Token: ' + api.getToken().substring(0, 20) + '...' : 'No token found' }}</code>
                 </div>
             </div>
+            
+            <!-- Products Management Section -->
+            <div class="card full-width">
+                <products-component></products-component>
+            </div>
         </main>
     </div>
 </template>
 
 <script>
 import api from '../services/api.js';
+import ProductsComponent from './ProductsComponent.vue';
 
 export default {
     name: 'DashboardComponent',
+    components: {
+        ProductsComponent
+    },
     props: {
         user: {
             type: Object,
@@ -142,6 +151,10 @@ body{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
+}
+
+.card.full-width {
+    grid-column: 1 / -1;
 }
 
 .card h2 {

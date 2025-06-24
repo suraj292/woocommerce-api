@@ -25,7 +25,7 @@ api.interceptors.response.use(
         if (error.response?.status === 401) {
             localStorage.removeItem('auth_token');
             localStorage.removeItem('user');
-            window.location.href = '/vue-demo';
+            window.location.href = '/auth';
         }
         return Promise.reject(error);
     }
@@ -47,6 +47,27 @@ export default {
     
     getUser() {
         return api.get('/user');
+    },
+    
+    // Product endpoints (WooCommerce focused)
+    getProducts(params = {}) {
+        return api.get('/products', { params });
+    },
+    
+    getProduct(productId) {
+        return api.get(`/products/${productId}`);
+    },
+    
+    createProduct(productData) {
+        return api.post('/products', productData);
+    },
+    
+    updateProduct(productId, productData) {
+        return api.put(`/products/${productId}`, productData);
+    },
+    
+    deleteProduct(productId) {
+        return api.delete(`/products/${productId}`);
     },
     
     // Helper methods
